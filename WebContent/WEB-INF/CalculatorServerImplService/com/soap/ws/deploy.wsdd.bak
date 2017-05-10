@@ -1,0 +1,42 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CalculatorServerImplService WSDL service -->
+
+  <service name="CalculatorServerImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://ws.soap.com"/>
+      <parameter name="wsdlServiceElement" value="CalculatorServerImplService"/>
+      <parameter name="schemaQualified" value="http://ws.soap.com"/>
+      <parameter name="wsdlServicePort" value="CalculatorServerImpl"/>
+      <parameter name="className" value="com.soap.ws.CalculatorServerImplSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="CalculatorServerImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="sum" qname="operNS:sum" xmlns:operNS="http://ws.soap.com" returnQName="retNS:sumReturn" xmlns:retNS="http://ws.soap.com" returnType="rtns:float" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:num1" xmlns:pns="http://ws.soap.com" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:num2" xmlns:pns="http://ws.soap.com" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="divide" qname="operNS:divide" xmlns:operNS="http://ws.soap.com" returnQName="retNS:divideReturn" xmlns:retNS="http://ws.soap.com" returnType="rtns:float" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:num1" xmlns:pns="http://ws.soap.com" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:num2" xmlns:pns="http://ws.soap.com" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="subtract" qname="operNS:subtract" xmlns:operNS="http://ws.soap.com" returnQName="retNS:subtractReturn" xmlns:retNS="http://ws.soap.com" returnType="rtns:float" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:num1" xmlns:pns="http://ws.soap.com" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:num2" xmlns:pns="http://ws.soap.com" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="multiply" qname="operNS:multiply" xmlns:operNS="http://ws.soap.com" returnQName="retNS:multiplyReturn" xmlns:retNS="http://ws.soap.com" returnType="rtns:float" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:num1" xmlns:pns="http://ws.soap.com" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:num2" xmlns:pns="http://ws.soap.com" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="subtract sum divide multiply"/>
+
+  </service>
+</deployment>
